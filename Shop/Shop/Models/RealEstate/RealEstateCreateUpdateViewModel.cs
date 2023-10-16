@@ -1,6 +1,6 @@
 ﻿namespace Shop.Models.RealEstate
 {
-    public class RealestateCreateUpdateViewModel
+    public class RealEstateCreateUpdateViewModel
     {
         public Guid? Id { get; set; }
         public string Address { get; set; }

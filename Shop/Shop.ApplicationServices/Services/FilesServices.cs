@@ -124,14 +124,21 @@ namespace Shop.ApplicationServices.Services
 
         public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)
         {
-            var image = await _context.FileToDatabases
-                .Where(x => x.Id == dto.Id)
-                .FirstOrDefaultAsync();
+            var imageId = await _context.FileToDatabases
+                .FirstOrDefaultAsync(x => x.Id == dto.Id);
 
-            _context.FileToDatabases.Remove(image);
+            var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\"
+                + imageId.RealEstateId;
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            _context.FileToDatabases.Remove(Id);
             await _context.SaveChangesAsync();
 
-            return image;
+            return null;
         }
     }
 }
