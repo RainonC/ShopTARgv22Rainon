@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopCore.ServiceInterface;
 using Shop.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
+using Shop.Core.ServiceInterface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +15,10 @@ builder.Services.AddDbContext<ShopContext>(options =>
 
 builder.Services.AddScoped<ISpaceshipServices, SpaceshipServices>();
 builder.Services.AddScoped<IFileServices, FilesServices>();
-builder.Services.AddScoped<IRealEstateServices, RealEstateServices>();
+builder.Services.AddScoped<IRealEstatesServices, RealEstatesServices>();
 
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

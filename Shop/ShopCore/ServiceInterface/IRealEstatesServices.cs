@@ -1,4 +1,5 @@
-﻿using ShopCore.Domain;
+﻿using Shop.Core.Dto;
+using ShopCore.Domain;
 using ShopCore.Dto;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShopCore.ServiceInterface
 {
-    public interface IRealEstateServices
+    public interface IRealEstatesServices
     {
         Task<RealEstate> Create(RealEstateDto dto);
         Task<RealEstate> GetAsync(Guid id);

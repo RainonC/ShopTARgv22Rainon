@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using ShopCore.Domain;
+using ShopCore.Dto;
 
-namespace ShopCore.Dto
+namespace Shop.Core.Dto
 {
     public class RealEstateDto
     {
@@ -16,7 +14,9 @@ namespace ShopCore.Dto
         public string BuildingType { get; set; }
         public DateTime BuiltInYear { get; set; }
 
-        //database
+        public List<IFormFile> Files { get; set; }
+        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();
+
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

@@ -1,8 +1,9 @@
-﻿@model Shop.Models.RealEstate.RealEstateDeleteViewModel
+﻿﻿@model Shop.Models.RealEstate.RealEstateDeleteViewModel
+
 <h1>Delete</h1>
 
 <div>
-    <h4>RealEstates</h4>
+    <h4>Realestate</h4>
     <hr />
     <dl class="row">
         <div class="form-group row">
@@ -21,7 +22,7 @@
         </div>
 
         <div class="form-group row">
-            <label asp-for="SizeSqrM" class="col-sm-2 col-form-label"></label>
+            <label asp-for="RoomCount" class="col-sm-2 col-form-label"></label>
             @Html.DisplayFor(model => Model.RoomCount)
         </div>
 
@@ -49,6 +50,12 @@
             <label asp-for="UpdatedAt" class="col-sm-2 col-form-label"></label>
             @Html.DisplayFor(model => Model.UpdatedAt)
         </div>
+
+        @foreach (var images in Model.ImageToDatabase)
+        {
+            <partial name="_Images" model="images" />
+        }
+
     </dl>
     <hr />
     <form asp-action="DeleteConfirmation">
@@ -56,6 +63,4 @@
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-action="index" class="btn btn-primary">Index</a>
     </form>
-
-
 </div>
