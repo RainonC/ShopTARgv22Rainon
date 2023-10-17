@@ -50,13 +50,13 @@ namespace Shop.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            RealestateCreateUpdateViewModel realEstate = new RealestateCreateUpdateViewModel();
+            RealEstateCreateUpdateViewModel realEstate = new RealEstateCreateUpdateViewModel();
 
             return View("CreateUpdate", realEstate);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RealestateCreateUpdateViewModel vm)
+        public async Task<IActionResult> Create(RealEstateCreateUpdateViewModel vm)
         {
             var dto = new RealEstateDto()
             {
@@ -148,7 +148,7 @@ namespace Shop.Controllers
                     Image = string.Format("data:image/gif;base64, {0}", Convert.ToBase64String(y.ImageData))
                 }).ToArrayAsync();
 
-            var vm = new RealestateCreateUpdateViewModel();
+            var vm = new RealEstateCreateUpdateViewModel();
 
             vm.Id = realEstate.Id;
             vm.Address = realEstate.Address;
@@ -165,7 +165,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(RealestateCreateUpdateViewModel vm)
+        public async Task<IActionResult> Update(RealEstateCreateUpdateViewModel vm)
         {
             var dto = new RealEstateDto()
             {

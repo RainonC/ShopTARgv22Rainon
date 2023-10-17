@@ -135,7 +135,7 @@ namespace Shop.ApplicationServices.Services
                 File.Delete(filePath);
             }
 
-            _context.FileToDatabases.Remove(Id);
+            _context.FileToDatabases.Remove(imageId);
             await _context.SaveChangesAsync();
 
             return null;
