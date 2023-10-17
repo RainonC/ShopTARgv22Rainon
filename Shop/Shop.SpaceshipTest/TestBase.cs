@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Shop.ApplicationServices.Services;
 using Shop.Core.ServiceInterface;
 using Shop.data;
 using Shop.SpaceshipTest.Macros;
+using Shop.SpaceshipTest.Mock;
 using ShopCore.ServiceInterface;
 using System;
 using System.Collections.Generic;
@@ -44,6 +46,7 @@ namespace Shop.SpaceshipTest
         {
             services.AddScoped<ISpaceshipServices, SpaceshipServices>();
             services.AddScoped<IFileServices, FilesServices>();
+            services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
 
             services.AddDbContext<ShopContext>(x =>
             {
