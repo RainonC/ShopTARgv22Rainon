@@ -15,12 +15,12 @@ using Shop.Core.ServiceInterface;
 
 namespace Shop.Controllers
 {
-    public class RealEstatesController : Controller
+    public class RealEstateController : Controller
     {
         private readonly ShopContext _context;
         private readonly IRealEstatesServices _realEstatesServices;
         private readonly IFileServices _fileServices;
-        public RealEstatesController
+        public RealEstateController
             (
                 ShopContext context,
                 IRealEstatesServices realEstatesServices,
