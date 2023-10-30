@@ -140,5 +140,22 @@ namespace Shop.ApplicationServices.Services
 
             return null;
         }
+
+        public async Task<FileToDatabase> RemovePhotosFromDatabase(FileToDatabaseDto[] dto)
+        {
+
+            foreach (var dtos in dto)
+            {
+                var photoId = await _context.FileToDatabases
+                    .Where(x => x.Id == dtos.Id)
+                    .FirstOrDefaultAsync();
+
+                _context.FileToDatabases.Remove(photoId);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return null;
+        }
     }
 }
