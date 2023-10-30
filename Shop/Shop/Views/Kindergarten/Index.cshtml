@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Shop.Models.Kindergarten.KinderGartenIndexViewModel>
+
+
+<div class="h1">
+    Kindergarten
+</div>
+
 @{
+    int rowNumber = 1;
 }
+
+<div>
+    <a asp-action="create" asp-controller="KinderGarten" class="btn btn-primary">Create</a>
+</div>
+
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">GroupName</th>
+                <th scope="col">ChildrenCount</th>
+                <th scope="col">KindergartenName</th>
+                <th scope="col">Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var kindergarten in Model)
+            {
+                <tr>
+                    <td>@rowNumber</td>
+                    <td>@kindergarten.GroupName</td>
+                    <td>@kindergarten.ChildrenCount</td>
+                    <td>@kindergarten.KindergartenName</td>
+                    <td>@kindergarten.Teacher</td>
+                    <td>
+                        <a asp-action="details" asp-controller="KinderGarten" asp-route-id="@kindergarten.Id" class="btn btn-info">Details</a>
+                        <a asp-action="update" asp-controller="KinderGarten" asp-route-id="@kindergarten.Id" class="btn btn-outline-primary">Update</a>
+                        <a asp-action="delete" asp-controller="KinderGarten" asp-route-id="@kindergarten.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+                rowNumber += 1;
+            }
+
+        </tbody>
+    </table>
+</form>

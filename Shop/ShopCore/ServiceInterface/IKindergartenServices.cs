@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShopCore.ServiceInterface
 {
-    public class IKindergartenServices
+    public interface IKindergartenServices
     {
-        //Task<Kindergarten> Create(KindergartenDto dto);
-        //Task<Kindergarten> GetAsync(Guid id);
-        //Task<Kindergarten> Update(KindergartenDto dto);
-        //Task<Kindergarten> Delete(Guid id);
+        Task<Kindergarten> Create(KindergartenDto dto);
+        Task<Kindergarten> GetAsync(Guid id);
+        Task<Kindergarten> Update(KindergartenDto dto);
+        Task<Kindergarten> Delete(Guid id);
     }
 }
