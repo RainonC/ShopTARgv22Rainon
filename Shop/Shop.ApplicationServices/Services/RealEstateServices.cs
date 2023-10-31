@@ -7,6 +7,7 @@ using Shop.data;
 
 
 using ShopCore.Domain;
+using ShopCore.Dto;
 using ShopCore.ServiceInterface;
 
 
@@ -82,13 +83,25 @@ namespace Shop.ApplicationServices.Services
 
         public async Task<RealEstate> Delete(Guid id)
         {
-            var realEstateId = await _context.RealEstates
+            var realestateId = await _context.RealEstates
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            _context.RealEstates.Remove(realEstateId);
+            var photos = await _context.FileToDatabases
+          .Where(x => x.RealEstateId == id)
+          .Select(y => new FileToDatabaseDto
+          {
+              Id = y.Id,
+              ImageTitle = y.ImageTitle,
+              RealEstateId = y.RealEstateId
+          })
+          .ToArrayAsync();
+
+            await _fileServices.RemovePhotosFromDatabase(photos);
+
+            _context.RealEstates.Remove(realestateId);
             await _context.SaveChangesAsync();
 
-            return realEstateId;
+            return realestateId;
         }
 
 
