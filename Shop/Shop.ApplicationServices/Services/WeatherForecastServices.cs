@@ -1,4 +1,5 @@
-﻿using ShopCore.Dto;
+﻿using Nancy.Json;
+using ShopCore.Dto.OpenWeatherDtos;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -18,7 +19,17 @@ namespace Shop.ApplicationServices.Services
 
             using (WebClient client = new WebClient()) 
             {
-                
+                string json = client.DownloadString(url);
+                OpenWeatherResponseRootDto weatherResult = new JavaScriptSerializer().Deserialize<OpenWeatherResponseRootDto>(json);
+
+                dto.City = weatherResult.Name;
+                dto.Temp = weatherResult.Main.Temp;
+                dto.feels_like = weatherResult.Main.FeelsLike;
+                dto.Humidity = weatherResult.Main.Humidity;
+                dto.Pressure = weatherResult.Main.Pressure;
+                dto.WindSpeed = weatherResult.Wind.Speed;
+                dto.Description = weatherResult.Weathers[0].Description;
+
             }
 
 
