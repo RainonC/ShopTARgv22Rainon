@@ -1,5 +1,6 @@
 ﻿using Nancy.Json;
 using ShopCore.Dto.OpenWeatherDtos;
+using ShopCore.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Shop.ApplicationServices.Services
 {
-    public class WeatherForecastServices
+    public class WeatherForecastServices : IWeatherForecastServices
     {
         public async Task<OpenWeatherResultDto> OpenWeatherResult(OpenWeatherResultDto dto)
         {
