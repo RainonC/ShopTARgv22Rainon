@@ -4,7 +4,7 @@ namespace Shop.Controllers
 {
     public class AccountsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Register()
         {
             return View();
         }
