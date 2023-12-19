@@ -1,4 +1,4 @@
-﻿
+﻿@model Shop.Models.OpenWeathers.SearchCityViewModel
 
 
 <h1>Search City</h1>
@@ -16,7 +16,10 @@
 	<div class="container">
 		<div class="form-group col-md-offset-3 col-md-5">
 			<button asp-controller="openWeathers" asp-action="searchCity" class="btn btn-primary">Search</button>
+				<img src="~/css/images/weather.png" alt="weather.png" style="margin-left: 10px;">
 		</div>
+			
 	</div>
 	</form>
 </div>
+
