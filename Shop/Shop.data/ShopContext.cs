@@ -1,16 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ShopCore.Domain;
 
 namespace Shop.data
 {
-    public class ShopContext : DbContext
-    {
-        public ShopContext
+    public class ShopContext : IdentityDbContext<ApplicationUser>
+    { 
+		public ShopContext
             (
-                DbContextOptions<ShopContext> options
-            ) : base(options) { }
+				DbContextOptions<ShopContext> options
+			) : base(options) { }
 
-        public DbSet<Spaceship> Spaceships { get; set; }
+		public DbSet<Spaceship> Spaceships { get; set; }
         public DbSet<FileToApi> FileToApis { get; set; }
         public DbSet<RealEstate> RealEstates { get; set; }
         public DbSet<FileToDatabase> FileToDatabases { get; set; }

@@ -6,11 +6,14 @@ using ShopCore.ServiceInterface;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shop.Controllers
 {
+    [Authorize]
     public class SpaceshipsController : Controller
     {
+        
 
         private readonly ShopContext _context;
         private readonly ISpaceshipServices _spaceshipServices;

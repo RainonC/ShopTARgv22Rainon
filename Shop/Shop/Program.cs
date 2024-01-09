@@ -4,6 +4,9 @@ using ShopCore.ServiceInterface;
 using Shop.ApplicationServices.Services;
 using Microsoft.Extensions.FileProviders;
 using Shop.Core.ServiceInterface;
+using Microsoft.AspNetCore.Identity;
+using ShopCore.Domain;
+using Shop.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,29 @@ builder.Services.AddScoped<IKindergartenServices, KindergartenServices>();
 builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 
+
+
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequiredLength = 3;
+
+    options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+    options.Lockout.MaxFailedAccessAttempts = 2;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+})
+    .AddEntityFrameworkStores<ShopContext>()
+    .AddDefaultTokenProviders()
+    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmation");
+//.AddDefaultUI();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+    o.TokenLifespan = TimeSpan.FromHours(5));
+
+//email tokens confirmation
+builder.Services.Configure<CustomEmailConfirmationTokenProviderOptions>(o =>
+    o.TokenLifespan = TimeSpan.FromDays(3));
 
 var app = builder.Build();
 
