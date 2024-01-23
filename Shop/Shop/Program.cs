@@ -7,6 +7,8 @@ using Shop.Core.ServiceInterface;
 using Microsoft.AspNetCore.Identity;
 using ShopCore.Domain;
 using Shop.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +49,13 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
 builder.Services.Configure<CustomEmailConfirmationTokenProviderOptions>(o =>
     o.TokenLifespan = TimeSpan.FromDays(3));
 
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        options.ClientId = "641203150003-sb085c3kddvatiapncea0c10ldc6gu7b.apps.googleusercontent.com";
+        options.ClientSecret = "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";
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -76,3 +85,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
