@@ -28,7 +28,7 @@ namespace Shop.Controllers
 
                IKindergartenServices kindergartenServices,
                IFileServices fileServices
-               )
+               )dfghdh
         {
             _context = context;
 
